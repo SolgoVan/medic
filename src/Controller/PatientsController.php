@@ -43,7 +43,7 @@ class PatientsController extends AbstractController
         return $this-> render('patients/new/patient.html.twig');
     }
 
-    // TRAITEMENT IDENTITE DU PATIENT ET MISE EN SESSION DE ID
+    /**  TRAITEMENT IDENTITE DU PATIENT ET MISE EN SESSION DE ID */
     #[Route('/nouveauPatientIdentite', name:'newPatientIdentity')]
     public function newPatientIdentity(Request $request, ManagerRegistry $managerRegistry, SessionInterface $session):Response
     {
@@ -72,7 +72,7 @@ class PatientsController extends AbstractController
         ]);
     }
 
-    // TRAITEMENT DES PERSONNES A CONTACTER EN CAS D URGENCE ET MISE EN SESSION ID
+    /** TRAITEMENT DES PERSONNES A CONTACTER EN CAS D URGENCE ET MISE EN SESSION ID */
 
     #[Route('/nouveauPatientPersonneUrgence', name:'newPatientEmergency')]
     public function newPatientEmergency(Request $request,ManagerRegistry $managerRegistry ,SessionInterface $session)
@@ -253,8 +253,7 @@ class PatientsController extends AbstractController
     public function createdPatient(Request $request): Response
     {
         
-        
-        
+
         
         $emergencyPeople = new EmergencyPeople;
         $pathologies = new Pathologies;
@@ -291,7 +290,7 @@ class PatientsController extends AbstractController
     }
 
     #[Route('/details/{id}', name: 'details')]
-    public function details(int $id, PatientsRepository $patientsRepository, ManagerRegistry $managerRegistry): Response
+    public function details(int $id, ManagerRegistry $managerRegistry): Response
     {
         $em = $managerRegistry->getManager();
         $patients = $em->getRepository(Patients::class)->find($id);
@@ -303,7 +302,7 @@ class PatientsController extends AbstractController
     }
 
     #[Route('/nouvelle_intervention', name:'newIntervention')]
-    public function newIntervention(Request $request, Users $user, ManagerRegistry $managerRegistry, Users $users, PatientIdentities $patientIdentities) : Response
+    public function newIntervention(Request $request, ManagerRegistry $managerRegistry) : Response
     {
         $consultation = new Consultations;
         $form = $this->createForm(ConsultationType::class, $consultation);

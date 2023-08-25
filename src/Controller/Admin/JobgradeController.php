@@ -22,6 +22,29 @@ class JobgradeController extends AbstractController
         return $this->render('admin/jobgrade/index.html.twig', compact('jobgrades'));
     }
 
+    #[Route('/ajout', name:'add')]
+    public function add(ManagerRegistry $managerRegistry, Request $request): Response
+    {
+        $jobgrades = new JobGrades;
+        $form = $this->createForm(JobGradesType::class, $jobgrades);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()&&$form->isValid()){
+            $em = $managerRegistry->getManager();
+            $em->persist($jobgrades);
+            $em->flush();
+
+            $this->addFlash("message", "Grade ajouté avec succès .");
+            return $this->redirectToRoute('admin_jobgrade_index');            
+        }
+
+        return $this->render('admin/jobgrade/add.html.twig', [
+            "form" => $form->createView()
+        ]);
+
+    }
+
     #[Route('/modification/{id}', name: 'edit')]
     public function edit(JobGrades $jobGrades, Request $request, ManagerRegistry $managerRegistry): Response
     {
@@ -35,7 +58,7 @@ class JobgradeController extends AbstractController
             $em->persist($jobGrades);
             $em->flush();
 
-            $this->addFlash('success', 'Grade modifié avec succès .');
+            $this->addFlash('message', 'Grade modifié avec succès .');
 
             return $this->redirectToRoute('admin_jobgrade_index');
         }
@@ -44,5 +67,15 @@ class JobgradeController extends AbstractController
             'form' => $jobGradeForm->createView(),
             'jobgrades' => $jobGrades
         ]);
+    }
+
+    #[Route('/supprimer/{id}', name: 'delete')]
+    public function delete(JobGrades $jobGrades, ManagerRegistry $managerRegistry): Response
+    {
+        $em = $managerRegistry->getManager();
+        $em->remove($jobGrades);
+        $em->flush();
+
+        return $this->redirectToRoute("admin_jobgrade_index");
     }
 }

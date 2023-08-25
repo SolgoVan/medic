@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+{% include "_partials/_nav_top.html.twig" %}
+<div class="container">
+    <div class="row">
+        {% include "_partials/_adminnav.html.twig" %}
+        <main class="col-9 border border-light bg-white p-2">
+            <h1>Modifier un utilisateur</h1>
+            {{form_start(form)}}
+            <div class="container mt-3">
+                <div class="row mt-2">
+                    <div class="col-3">Nom</div>
+                    <div class="col-8">{{form_row(form.lastname)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Prénom</div>
+                    <div class="col-8">{{form_row(form.firstname)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Roles</div>
+                    <div class="col-8"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Date de naissance</div>
+                    <div class="col-8">{{form_row(form.birth_date)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">E mail</div>
+                    <div class="col-8">{{form_row(form.email)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Compte activé</div>
+                    <div class="col-8">{{form_row(form.is_valid_account)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Compte créé le</div>
+                    <div class="col-8">{{form_row(form.created_at)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">En service</div>
+                    <div class="col-8">{{form_row(form.is_working)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Grade</div>
+                    <div class="col-8">{{form_row(form.job_grades)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3"></div>
+                    <div class="col-3"><button type="submit" class="btn btn-primary">Valider</button></div>
+                    <div class="col-3"><a href="{{path('admin_jobgrade_index')}}" class="btn btn-secondary">Annuler</a></div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+                
+                
+                
+            {{form_end(form)}}
+        </main>
+    </div>
+</div>
+{% endblock %}

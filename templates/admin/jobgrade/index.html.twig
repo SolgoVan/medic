@@ -28,7 +28,7 @@
                             <td>{{jobgrade.billingPercentage}} %</td>
                             <td>
                                 <a href="{{path('admin_jobgrade_edit', {id: jobgrade.id})}}" class="btn btn-primary btn-sm">Modifier</a>
-                                <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+                                <a href="{{path('admin_jobgrade_delete', {id: jobgrade.id})}}" class="btn btn-danger btn-sm">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -52,8 +52,8 @@
                                     </div>
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm">Modifier</a>
-                                <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+                                <a href="{{path('admin_user_edit', {id: user.id})}}" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="#" class="btn btn-danger btn-sm mt-1">Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un grade{% endblock %}
+
+{% block body %}
+{% include "_partials/_nav_top.html.twig" %}
+<div class="container">
+    <div class="row">
+        {% include "_partials/_adminnav.html.twig" %}
+        <main class="col-9 border border-light bg-white p-2">
+            <h1>Ajouter un grade</h1>
+            {{form_start(form)}}
+            <div class="container mt-3">
+                <div class="row mt-2">
+                    <div class="col-3">Grade</div>
+                    <div class="col-8">{{form_row(form.label)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Salaire</div>
+                    <div class="col-8 form-outline">{{form_row(form.salary)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3">Pourcentage</div>
+                    <div class="col-8">{{form_row(form.billing_percentage)}}</div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3"></div>
+                    <div class="col-3"><button type="submit" class="btn btn-primary">Valider</button></div>
+                    <div class="col-3"></div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+                
+                
+                
+            {{form_end(form)}}
+        </main>
+    </div>
+</div>
+{% endblock %}
