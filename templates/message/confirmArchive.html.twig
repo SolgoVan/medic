@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation
+{% endblock %}
+
+{% block stylesheet %}
+	<style></style>
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="border border-3 rounded mt-5 p-5 bg-light">
+			<h1>Mettre à la corbeille</h1>
+			<hr>
+			<p>Etes vous sur de vouloir déplacer cette élément vers la corbeille ?</p>
+			<button class="btn btn-secondary"><a class="text-decoration-none text-light" href="{{path('message_received')}}">Retour</a></button>
+			<button class="btn btn-warning"><a class="text-decoration-none text-dark" href="{{path('message_archived', {id: message.id})}}">Mettre à la corbeille</a></button>
+		</div>
+	</div>
+
+{% endblock %}

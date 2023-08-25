@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<h2 class="mt-2 text-center">Liste des patients</h2>
+		<hr>
+		<div class="border border-danger rounded bg-danger-subtle p-3">
+			<div class="row">
+				<div class="col-2 fs-5">Nom Prénom</div>
+				<div class="col-2 fs-5">Date de naissance</div>
+				<div class="col-2 fs-5">Email</div>
+				<div class="col-2 fs-5">Téléphone</div>
+				<div class="col-2 fs-5">Profession</div>
+				<div class="col-2 fs-5">Contact d'urgence</div>
+			</div>
+			<hr>
+			{% for patient in patients %}
+
+				<div class="row">
+					<div class="col-2">
+						<a href="{{path('patients_details', {id: patient.id} )}}" class="text-decoration-none text-dark">{{patient.patientsIdentities.lastname}}
+							{{patient.patientsIdentities.firstname}}</a>
+					</div>
+					<div class="col-2">{{patient.patientsIdentities.birthDate|date ('d/m/Y')}}</div>
+					<div class="col-2">{{patient.patientsIdentities.email}}</div>
+					<div class="col-2">{{patient.patientsIdentities.phone}}</div>
+					<div class="col-2">{{patient.patientsIdentities.occupation}}</div>
+					<div class="col-2">{{patient.emergencyPerson.lastname}}
+						{{patient.emergencyPerson.firstname}}
+						{{patient.emergencyPerson.phone}}</div>
+				</div>
+				<hr>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}

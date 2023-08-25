@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue{% endblock %}
+
+{% block body %}
+    {% include "_partials/_nav_top.html.twig" %}
+    <div class="container">
+        <div class="mt-4">
+            <img src="{{asset('Img/Logo.webp')}}" alt="Logo" height="150px" class="mx-auto d-block">
+        </div>
+
+        {% if app.user %}
+        
+            {% if app.user.isValidAccount == 0 %}
+                <div class="container mt-3 mb-3">
+                    <div class="bg-warning-subtle border border-warning rounded">
+                        <div class="text-dark m-4">
+                            Votre compte n'est pas activé, veuillez contacter votre chef de service afin d'avoir les autorisations requise.
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <h1 class="text-center mt-3">L'équipe de Pillbox Hill vous souhaite la bienvenue</h1>
+            <h2 class="text-center mt-3">Vous n'êtes pas connecté ou inscrit</h2>
+            
+            <div>
+                <button class="btn btn-primary"><a href="{{path('login')}}" class="text-decoration-none text-light">Se connecter</a></button>
+            </div>
+            <div>
+            <button class="btn btn-info"><a href="{{path('register')}}" class="text-decoration-none text-light">S'inscrire</a></button></div>
+        {% endif %}
+        
+        
+    
+    </div>
+{% endblock %}

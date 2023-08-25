@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+    {% include "_partials/_nav_top.html.twig" %}
+    {% include "_partials/_nav_message.html.twig" %}
+    <div class="container mt-2">
+        <br>
+        <div class="row">
+            <p>Résumé de la messagerie</p>
+            <p>Reçus : {{app.user.received|length}}</p>
+            <p>Envoyées : {{app.user.sent|length}}</p>
+        </div>
+    </div>
+{% endblock %}

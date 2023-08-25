@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de prise de service
+{% endblock %}
+
+{% block body %}
+    {% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_staff.html.twig" %}
+    <div class="container">
+        <h1>Gestion temps salarié</h1>
+        <hr>
+        <div class="row border border-dark">
+            <div class="col-2">Nom :</div>
+            <div class="col-2">Grade :</div>
+            <div class="col-2">Taux horaire :</div>
+            <div class="col-2">Temps total en service :</div>
+            <div class="col-2">Net à payer :</div>
+            <div class="col-2">Facture :</div>
+        </div>
+        {% for userData in totalSumPerUser %}
+        <div class="row">
+        {% set hourSalary = userData.jobSalary * 4 %}
+        {% set hourCoef = userData.totalSum / 3600 %}
+        {% set netSalary = hourCoef * hourSalary %}
+        {% set coefPercent = userData.percent / 100 %}
+            
+                <div class="col-2">{{userData.lastname}} {{userData.firstname}}</div>
+                <div class="col-2">{{userData.jobLabel|capitalize}}</div>
+                <div class="col-2">{{hourSalary}}$/h</div>
+                <div class="col-2">{{userData.totalFormatted}}</div>
+                <div class="col-2">{{netSalary|number_format(0, '.', '')}} $</div>
+                <div class="col-2">{{userData.amount * coefPercent}}</div>      
+                
+                <div class="col"></div>
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+{% endblock %}

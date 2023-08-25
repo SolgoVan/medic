@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('Assets/css/style.css')}}">
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<h2 class="mt-3">Nouveau patient</h2>
+		<hr>
+        <div>
+			<div class="row">
+				<div class="container">
+                    <div class="progress-container">
+                        <div class="progressbar" id="progress"> </div>
+                        <div class="circle active">1</div>
+                        <div class="circle active">2</div>
+                        <div class="circle active">3</div>
+                        <div class="circle active">4</div>
+                        <div class="circle active">5</div>
+                        <div class="circle active">6</div>
+                    </div>
+                </div>
+			</div>
+        <br>
+		</div>
+        <div>
+            <h3 class="text-center">Pathologie</h3>
+            <p class="text-center">Veuillez saisir tout les champs du formulaire et cliquez sur CONTINUER.</p>
+        </div>
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row bg-primary-subtle border border-primary rounded p-4">
+                    <div class="col">
+                        
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Allergies :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_allergic)}}</div>
+                            <div class="col-8">{{form_row(form.allergy)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Diabète :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_diabetic)}}</div>
+                            <div class="col-8">{{form_row(form.diabetes)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Asthme :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_asmatic)}}</div>
+                            <div class="col-8">{{form_row(form.asthma)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Cardiaque :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_cardiac)}}</div>
+                            <div class="col-8">{{form_row(form.cardiac)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Épilépsie :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_epileptic)}}</div>
+                            <div class="col-8">{{form_row(form.epilepsy)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Antecédent :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_historic)}}</div>
+                            <div class="col-8">{{form_row(form.antecedent)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-3 fs-5">Traitement :</div>
+                            <div class="col-1 form-check form-switch">{{form_row(form.is_treatement)}}</div>
+                            <div class="col-8">{{form_row(form.treatement)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4 fs-5">Commentaire :</div>
+                            <div class="col-8">{{form_row(form.comment)}}</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row mt-5">
+                    {{form_row(form.Continuer)}}
+                </div>
+                
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div>
+            
+        </div>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

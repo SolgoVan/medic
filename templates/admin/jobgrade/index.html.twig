@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des grades{% endblock %}
+
+{% block body %}
+{% include "_partials/_nav_top.html.twig" %}
+<div class="container">
+    <div class="row">
+        {% include "_partials/_adminnav.html.twig" %}
+        <main class="col-9 border border-light bg-white p-2">
+            <h1>Liste des grades</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Grade</th>
+                        <th>Salaire /h</th>
+                        <th>Pourcentage</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for jobgrade in jobgrades %}
+                        <tr>
+                            <td>{{jobgrade.id}}</td>
+                            <td>{{jobgrade.label|capitalize}}</td>
+                            <td>{{jobgrade.salary * 4}} $</td>
+                            <td>{{jobgrade.billingPercentage}} %</td>
+                            <td>
+                                <a href="#" class="btn btn-primary btn-sm">Modifier</a>
+                                <a href="#" class="btn btn-danger btn-sm">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</div>
+{% endblock %}

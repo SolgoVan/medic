@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('Assets/css/style.css')}}">
+{% endblock %}
+
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<h2 class="mt-3">Nouveau patient</h2>
+		<hr>
+        <div>
+			<div class="row">
+				<div class="container">
+                    <div class="progress-container">
+                        <div class="progressbar" id="progress"> </div>
+                        <div class="circle active">1</div>
+                        <div class="circle active">2</div>
+                        <div class="circle active">3</div>
+                        <div class="circle">4</div>
+                        <div class="circle">5</div>
+                        <div class="circle">6</div>
+                    </div>
+                </div>
+			</div>
+        <br>
+		</div>
+        <div>
+            <h3 class="text-center">Mensuration</h3>
+            <p class="text-center">Veuillez saisir tout les champs du formulaire et cliquez sur CONTINUER.</p>
+        </div>
+        {{form_start(form)}}
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="row bg-light-subtle border border-dark rounded p-4">
+                    <div class="col">
+                        <div class="row p-1">
+                            <div class="col-4 fs-5">Taille :</div>
+                            <div class="col-8">{{form_row(form.size)}}</div>
+                        </div>
+                        <div class="row p-1">
+                            <div class="col-4 fs-5">Poids :</div>
+                            <div class="col-8">{{form_row(form.weight)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row mt-5">
+                    {{form_row(form.Continuer)}}
+                </div>
+                
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div>
+            
+        </div>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

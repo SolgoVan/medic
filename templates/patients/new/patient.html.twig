@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<h2 class="text-center mt-3">Nouveau patient</h2>
+		<hr>
+        <div>
+            <p class="text-center">Vous êtes sur le point d'ajouter un nouveau patient .</p>
+            <p class="text-center">Veuillez bien prendre garde aux informations à enregister .</p>
+            <p class="text-center">Je serais votre assistant tout au long de la procédure .</p>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="row mt-5">
+                    <button type="submit" class="btn btn-success btn-lg"><a class="text-decoration-none text-light" href="{{path('patients_newPatientIdentity')}}">Continuer</a></button>
+                </div>
+                
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+{% endblock %}

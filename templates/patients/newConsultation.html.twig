@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle intervention
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+        <h2 class="mt-2 text-center">Nouvelle intervention</h2>
+        <hr>
+            {{form_start(form)}}
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">Praticien :</div>
+                        <div class="row">{{form_row(form.practitioner)}}</div>
+
+                        <div class="row">Patient :</div>
+                        <div class="row">{{form_row(form.patients_identities)}}</div>
+
+                        <div class="row">Raison de l'appel :</div>
+                        <div class="row">{{form_row(form.emergency)}}</div>
+
+                        <div class="row">Type de consultation :</div>
+                        <div class="row">{{form_row(form.examen)}}</div>
+
+                        <div class="row">Localisation :</div>
+                        <div class="row">{{form_row(form.localisation)}}</div>
+
+                        <div class="row">Véhicule utilisé :</div>
+                        <div class="row">{{form_row(form.vehicle)}}</div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">Déscription :</div>
+                        <div class="row">{{form_row(form.title)}}</div>
+
+                        <div class="row">Soins effectuées :</div>
+                        <div class="row">{{form_row(form.care)}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">Commentaire :</div>
+                    <div class="row">{{form_row(form.comment)}}</div>
+                </div>
+            {{form_end(form)}}
+    </div>
+{% endblock %}

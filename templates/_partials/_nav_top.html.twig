@@ -1,0 +1,164 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand text-light" href="{{path('start')}}">PILLBOX HILL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				{% if app.user %}
+					{% if app.user.isValidAccount == 0 %}
+
+						{% else %}
+
+							<li class="nav-item">
+								<a class="nav-link active text-light" data-bs-toggle="offcanvas" role="button" href="#offcanvasMenu">Menu</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-light" href="#">Link</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Dropdown
+								</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a class="dropdown-item" href="#">Action</a>
+									</li>
+									<li>
+										<a class="dropdown-item" href="#">Another action</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li>
+										<a class="dropdown-item" href="#">Something else here</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								{% if app.user.isWorking == 0 %}
+									<a href="{{path('service_working', {id: app.user.id})}}" class="nav-link text-warning">Bienvenue
+										{{app.user.firstname|upper}}
+										{{app.user.lastname|upper}}
+										vous n'êtes pas en service
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewbox="0 0 16 16">
+											<path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+											<path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+											<path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+										</svg>
+									</a>
+								{% else %}
+									<a href="{{path('service_endOfWork', {id: app.user.id})}}" class="nav-link text-info">Bienvenue
+										{{app.user.firstname|upper}}
+										{{app.user.lastname|upper}}
+										vous êtes en service
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewbox="0 0 16 16">
+											<path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+											<path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+											<path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+										</svg>
+									</a>
+								{% endif %}
+
+
+							</li>
+
+					{% endif %}
+				{% endif %}
+			</ul>
+			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+				{% if app.user %}
+					{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item">
+						<a href="{{path('admin_index')}}" class="nav-link text-light">Administration</a>
+					</li>
+					{% endif %}
+					
+					<li class="nav-item">
+						<a href="{{path('message_home')}}" class="nav-link text-light">
+							<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope" viewbox="0 0 16 16">
+								<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+							</svg>
+						</a>
+
+
+					</li>
+					<li class="nav-item">
+						<a href="{{path('profil')}}" class="nav-link text-light">Mon compte</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('logout')}}" class="nav-link text-light">Me Déconnecter</a>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a href="{{path('login')}}" class="nav-link text-light">Me Connecter</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{path('register')}}" class="nav-link text-light">M'inscrire</a>
+					</li>
+				{% endif %}
+			</ul>
+
+		</div>
+	</div>
+</nav>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+	<div class="offcanvas-header">
+		<h2 class="offcanvas-title" id="offcanvasMenuLabel">MENU</h2>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+
+		<ul class="navbar-nav ms-5">
+			<li class="nav-item">
+				{% if app.user %}
+
+					{% if app.user.isWorking == 0 %}
+						<a href="{{path('service_working', {id: app.user.id})}}">
+							<button class="btn btn-secondary mt-3">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm me-2" viewbox="0 0 16 16">
+									<path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+									<path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+								</svg>Prise de service</button>
+						</a>
+					{% else %}
+						<a href="{{path('service_endOfWork', {id: app.user.id})}}">
+							<button class="btn btn-secondary mt-3">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm me-2" viewbox="0 0 16 16">
+									<path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
+									<path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
+								</svg>Fin de service</button>
+						</a>
+					{% endif %}
+				{% endif %}
+			</li>
+		</ul>
+
+
+		<br>
+		<ul class="navbar-nav ms-5">
+			<li class="nav-item">
+				<a href="#">
+					<button class="btn secondary m-1">Mon profil</button>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('patients_home')}}">
+					<button class="btn btn-secondary m-1">Patients</button>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('message_home')}}">
+					<button class="btn btn-secondary m-1">Messagerie</button>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a href="{{path('staff_home')}}">
+					<button class="btn btn-secondary m-1">Direction</button>
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>

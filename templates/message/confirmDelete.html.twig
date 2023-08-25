@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation
+{% endblock %}
+
+{% block stylesheet %}
+	<style></style>
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="border border-3 rounded mt-5 p-5 bg-light">
+			<h1>Supprimer ce message</h1>
+			<hr>
+			<p>Etes vous sur de vouloir supprimer cette élement ?</p>
+            <p>Cette action est irréversible .</p>
+			<button class="btn btn-secondary"><a class="text-decoration-none text-light" href="{{path('message_received')}}">Retour</a></button>
+			<button class="btn btn-danger"><a class="text-decoration-none text-dark" href="{{path('message_delete', {id: message.id})}}">Supprimer</a></button>
+		</div>
+	</div>
+
+{% endblock %}

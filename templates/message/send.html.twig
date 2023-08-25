@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Envoyer un message{% endblock %}
+
+{% block body %}
+    {% include "_partials/_nav_top.html.twig" %}
+    {% include "_partials/_nav_message.html.twig" %}
+    <div class="container mt-2">
+        <br>
+        <div class="row">
+            <div class="col">
+                <h2>Envoyer un message</h2>
+                {{form(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

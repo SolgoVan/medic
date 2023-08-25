@@ -1,0 +1,320 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('Assets/css/style.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('Assets/js/script.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<div class="row bg-shadeblue mt-3 rounded-top">
+			<div class="col-4 fs-2 mt-2 text-light">Détail de
+			{{patients.patientsIdentities.lastname}}
+			{{patients.patientsIdentities.firstname}}</div>
+			<div class="col-1"></div>
+			<div class="col-4 fs-4 mt-3 text-light">Dossier créer par {{patients.createdBy.lastname}} {{patients.createdBy.firstname}}</div>
+			{% set my_timezone = 'Europe/Paris' %}
+			<div class="col-3 fs-4 mt-3 text-light">Le {{patients.createdAt|date ('d/m/Y')}}</div>
+		</div>
+		<h2 class="mt-2 text-center"></h2>
+		<hr>
+		<div class="tabs">
+			<ul class="list">
+				<li class="tab active" data-target="#content1">Information général</li>
+				<li class="tab" data-target="#content2">Informations physique</li>
+				<li class="tab" data-target="#content3">Pathologies</li>
+				<li class="tab" data-target="#content4">Addictions</li>
+				<li class="tab" data-target="#content5">Don du sang</li>
+				<li class="tab" data-target="#content6">Dossier médical</li>
+			</ul>
+			<div class="contents">
+				<div class="content" id="content1">
+					<h3>Informations général</h3>
+					<div>
+						<div class="row">
+							<div class="col-6">
+								<div class="row">
+									<h4>Identité du patient</h4>
+								</div>
+								<div class="row">
+									<div class="col-6">Nom :</div>
+									<div class="col-6">{{patients.patientsIdentities.lastname}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Prénom :</div>
+									<div class="col-6">{{patients.patientsIdentities.firstname}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Date de naissance</div>
+									<div class="col-6">{{patients.patientsIdentities.birthDate|date ('d/m/Y')}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Genre :</div>
+									{#<div class="col-6">{{patients.patientsIdentities.genre}}</div>#}
+								</div>
+								<div class="row">
+									<div class="col-6">Téléphone :</div>
+									<div class="col-6">{{patients.patientsIdentities.phone}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">E-mail :</div>
+									<div class="col-6">{{patients.patientsIdentities.email}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Profession :</div>
+									<div class="col-6">{{patients.patientsIdentities.occupation}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Employeur :</div>
+									<div class="col-6">{{patients.patientsIdentities.employer}}</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row">
+									<h4>Personne à contacter en cas d'urgence</h4>
+								</div>
+								<div class="row">
+									<div class="col-6">Nom :</div>
+									<div class="col-6">{{patients.emergencyPerson.lastname}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Prénom :</div>
+									<div class="col-6">{{patients.emergencyPerson.firstname}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Téléphone</div>
+									<div class="col-6">{{patients.emergencyPerson.phone}}</div>
+								</div>
+								<div class="row">
+									<div class="col-6">Commentaire :</div>
+									<div class="col-6">{{patients.emergencyPerson.comment}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="content" id="content2">
+					<h3>Informations physique</h3>
+					<div class="row">
+						<div class="col-3">Taille :</div>
+						<div class="col-3">{{patients.measurement.size}}
+							cm</div>
+					</div>
+					<div class="row">
+						<div class="col-3">Poids :</div>
+						<div class="col-3">{{patients.measurement.weight}}
+							kg</div>
+					</div>
+					<div class="row">
+						<div class="col-3">Groupe sanguin</div>
+						<div class="col-3">{{patients.bloodGroup.bloodGroup}}</div>
+					</div>
+				</div>
+				<div class="content" id="content3">
+					<h3>Pathologies</h3>
+					<div class="row mb-2">
+						<div class="col-2">Allergie :</div>
+						<div class="col-1">
+							{% if patients.pathology.isAllergic == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isAllergic == 1 %}
+								{{patients.pathology.allergy}}
+							{% else %}
+								Pas d'allergie connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Diabètes :</div>
+						<div class="col-1">
+							{% if patients.pathology.isDiabetic == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isDiabetic == 1 %}
+								{{patients.pathology.diabetes}}
+							{% else %}
+								Pas de diabète connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Asthmes :</div>
+						<div class="col-1">
+							{% if patients.pathology.isAsmatic == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isAsmatic == 1 %}
+								{{patients.pathology.asthma}}
+							{% else %}
+								Pas d'asthme connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Cardiaque :</div>
+						<div class="col-1">
+							{% if patients.pathology.isCardiac == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isCardiac == 1 %}
+								{{patients.pathology.cardiac}}
+							{% else %}
+								Pas d'anomalie cardiaque connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Epilepsie :</div>
+						<div class="col-1">
+							{% if patients.pathology.isEpileptic == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isEpileptic == 1 %}
+								{{patients.pathology.epilepsy}}
+							{% else %}
+								Pas d'épilepsie connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Antécedent :</div>
+						<div class="col-1">
+							{% if patients.pathology.isHistoric == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isHistoric == 1 %}
+								{{patients.pathology.antecedent}}
+							{% else %}
+								Pas d'antécedent connu.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mb-2">
+						<div class="col-2">Traitement :</div>
+						<div class="col-1">
+							{% if patients.pathology.isTreatement == 1 %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="25" height="25" fill="currentColor" class="bi bi-capsule-pill" viewbox="0 0 16 16">
+									<path d="M11.02 5.364a3 3 0 0 0-4.242-4.243L1.121 6.778a3 3 0 1 0 4.243 4.243l5.657-5.657Zm-6.413-.657 2.878-2.879a2 2 0 1 1 2.829 2.829L7.435 7.536 4.607 4.707ZM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm-.5 1.042a3 3 0 0 0 0 5.917V9.042Zm1 5.917a3 3 0 0 0 0-5.917v5.917Z"/>
+								</svg>
+							{% else %}
+								<svg xmlns="http://www.w3.org/2000/svg" class="text-success" width="25" height="25" fill="currentColor" class="bi bi-clipboard-check" viewbox="0 0 16 16">
+									<path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+									<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+									<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+								</svg>
+							{% endif %}
+						</div>
+						<div class="col-8">
+							{% if patients.pathology.isTreatement == 1 %}
+								{{patients.pathology.treatement}}
+							{% else %}
+								Pas de traitement à ce jour.
+							{% endif %}
+						</div>
+					</div>
+                    <div class="row mt-2">
+						<div class="col-2">Commentaire :</div>
+						<div class="col-1"></div>
+                        <div class="col-8">{{patients.pathology.comment}}</div>
+						
+					</div>
+				</div>
+				<div class="content" id="content4">
+					<h3>Addictions</h3>
+                    <div class="row">
+                        <div class="col-3">Tabac :</div>
+                        <div class="col-3">{{patients.addiction.tobacco}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">Alcool :</div>
+                        <div class="col-3">{{patients.addiction.alcohol}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">Drogue :</div>
+                        <div class="col-3">{{patients.addiction.drug}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">Autre :</div>
+                        <div class="col-3">{{patients.addiction.other}}</div>
+                    </div>
+				</div>
+				<div class="content" id="content5">
+					<h3>Don du sang</h3>
+				</div>
+				<div class="content" id="content6">
+					<h3>Dossier médical</h3>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

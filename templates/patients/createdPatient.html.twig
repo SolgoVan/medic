@@ -1,0 +1,263 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau patient
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('Assets/css/style.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{asset('Assets/js/script.js')}}"></script>
+{% endblock %}
+
+{% block body %}
+	{% include "_partials/_nav_top.html.twig" %}
+	{% include "_partials/_nav_patient.html.twig" %}
+	<div class="container">
+		<h2>Nouveau patient</h2>
+		<hr>
+		<div class="row">
+            <!--PREMIER COLONNE -->
+			<div class="col-4">
+				<!--IDENTITE DU PATIENT-->
+                
+				<div class="row border border-info rounded m-1 bg-info-subtle ">
+					<div class="row ml-1">
+						<div class="col text-center">
+							<h3>Identité du patient</h3>
+						</div>
+					</div>
+                    {{form_start(form1)}}
+					<div class="row m-1">
+						<div class="col-4">Nom</div>
+						<div class="col-8">{{ form_row(form1.lastname) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Prénom</div>
+						<div class="col-8">{{ form_row(form1.firstname) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">E-mail</div>
+						<div class="col-8">{{ form_row(form1.email) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Téléphone</div>
+						<div class="col-8">{{ form_row(form1.phone) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Date de naissance</div>
+						<div class="col-8">{{ form_row(form1.birth_date) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Genre</div>
+						<div class="col-8">{{ form_row(form1.genders) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Profession</div>
+						<div class="col-8">{{ form_row(form1.occupation) }}</div>
+					</div>
+					<div class="row m-1">
+						<div class="col-4">Employeur</div>
+						<div class="col-8">{{ form_row(form1.employer) }}</div>
+					</div>
+                    {{form_end(form1)}}
+				</div>
+                
+				<div
+					class=" row border border-warning rounded bg-warning-subtle m-1">
+					<!--PERSONNE A PREVENIR EN CAS D'URGENCE-->
+					<div class="row">
+						<div class="col-11 text-center">
+							<h5>Personne à prévenir en cas d'urgence</h5>
+						</div>
+						<div class="col-1">
+                            <button class="btn" id="btnEmergencyOn"><i class="bi bi-arrow-down-square" style="font-size:1.7rem;"></i></button>
+							
+						</div>
+					</div>
+					<!--DiV d'activation ou de désactivation du formulaire-->
+					<div class="visible" id="emergency">
+                        {{form_start(form2)}}
+						<div class="row m-1">
+							<div class="col-4">Nom</div>
+							<div class="col-8">{{form_row(form2.lastname)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Prénom</div>
+							<div class="col-8">{{form_row(form2.firstname)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Téléphone</div>
+							<div class="col-8">{{form_row(form2.phone)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Commentaire</div>
+							<div class="col-8">{{form_row(form2.comment)}}</div>
+						</div>
+                        {{form_end(form2)}}
+					</div>
+				</div>
+			</div>
+            <!--DEUXIEME COLONNE-->
+            <div class="col-4">
+				<div
+					class="row border border-primary rounded bg-primary-subtle m-1">
+					<!--PATHOLOGIE-->
+					<div class="row">
+						<div class="col-11 text-center">
+							<h3>Pathologies</h3>
+						</div>
+                        <div class="col-1">
+                            <button class="btn" id="btnPathologyOn"><i class="bi bi-arrow-down-square" style="font-size:1.7rem;"></i></button>
+						</div>
+					</div>
+					<div class="" id="pathology">
+                        {{form_start(form3)}}
+						<div class="row m-1">
+							<div class="col-4">Allergies :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_allergic)}}</div>
+							<div class="col-6">{{form_row(form3.allergy)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Diabètes</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_diabetic)}}</div>
+							<div class="col-6">{{form_row(form3.diabetes)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Asthmes :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_asmatic)}}</div>
+							<div class="col-6">{{form_row(form3.asthma)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Cardiaque :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_cardiac)}}</div>
+							<div class="col-6">{{form_row(form3.cardiac)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Épilépsie :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_epileptic)}}</div>
+							<div class="col-6">{{form_row(form3.epilepsy)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Antécedents :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_historic)}}</div>
+							<div class="col-6">{{form_row(form3.antecedent)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Traitements :</div>
+							<div class="col-2 form-check form-switch">{{form_row(form3.is_treatement)}}</div>
+							<div class="col-6">{{form_row(form3.treatement)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col">Commentaires :</div>
+						</div>
+						<div class="row p-1">
+							<div class="col">
+								{{form_row(form3.comment)}}</textarea>
+							</div>
+						</div>
+                        {{form_end(form3)}}
+					</div>
+
+				</div>
+			</div>
+            <!-- TROISIEME COLONNE-->
+			<div class="col-4">
+				<div
+					class="row border border-dark rounded bg-light m-1">
+					<!--TAILLE ET POIDS-->
+					<div class="row">
+						<div class="col-11 text-center">
+							<h3>Mensuration</h3>
+						</div>
+						<div class="col-1">
+                            <button class="btn" id="btnMeasurementOn"><i class="bi bi-arrow-down-square" style="font-size:1.7rem;"></i></button>
+						</div>
+					</div>
+					<!--DiV d'activation ou de désactivation du formulaire-->
+					<div class="visible" id="measurement">
+                        {{form_start(form4)}}
+						<div class="row m-1">
+							<div class="col-4">Taille</div>
+							<div class="col-8">{{form_row(form4.size)}}</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Poids</div>
+							<div class="col-8">{{form_row(form4.weight)}}</div>
+						</div>
+                        {{form_end(form4)}}
+					</div>
+				</div>
+				<div
+					class="row border border-danger rounded bg-danger-subtle m-1">
+					<!--GROUPE SANGUIN-->
+					<div class="row">
+						<div class="col-11 text-center">
+							<h3>Groupe sanguin</h3>
+						</div>
+						<div class="col-1">
+                            <button class="btn" id="btnBloodOn"><i class="bi bi-arrow-down-square" style="font-size:1.7rem;"></i></button>
+						</div>
+					</div>
+					<!--DiV d'activation ou de désactivation du formulaire-->
+					<div class="visible" id="blood">
+						<div class="row m-1">
+                            {{form_start(form5)}}
+							<div class="col-4">Groupe sanguin</div>
+							<div class="col-8">{{form_row(form5.blood_group)}}</div>
+                            {{form_end(form5)}}
+						</div>
+					</div>
+				</div>
+				<div class="row border border-success rounded bg-success-subtle m-1">
+					<!--ADDICTION-->
+					<div class="row">
+						<div class="col-11 text-center">
+							<h3>Addictions</h3>
+						</div>
+						<div class="col-1">
+                            <button class="btn" id="btnAddictionOn"><i class="bi bi-arrow-down-square" style="font-size:1.7rem;"></i></button>
+						</div>
+					</div>
+					<!--DiV d'activation ou de désactivation du formulaire-->
+					<div class="visible" id="addiction">
+                        {{form_start(form6)}}
+						<div class="row m-1">
+							<div class="col-4">Tabac</div>
+							<div class="col-8">
+								{{form_row(form6.tobacco)}}
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Alcool</div>
+							<div class="col-8">
+								{{form_row(form6.alcohol)}}
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col-4">Drogue</div>
+							<div class="col-8">
+								{{form_row(form6.drug)}}
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col">Autres</div>
+						</div>
+						<div class="row p-1">
+							<div class="col">
+								{{form_row(form6.other)}}
+							</div>
+						</div>
+                        {{form_end(form6)}}
+					</div>
+				</div>
+                <!--BOUTON DE VALIDATION DU FORMULAIRE-->
+                <div class="row m-1 mt-5">
+                    <button type="submit" class="btn btn-success btn-lg">Valider les informations</button>
+                </div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
